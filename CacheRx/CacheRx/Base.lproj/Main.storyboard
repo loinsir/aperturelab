@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CacheRx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이미지 로딩 준비" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgY-OF-EjO">
+                                <rect key="frame" x="10" y="54" width="112" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQh-71-Cg1">
+                                <rect key="frame" x="291" y="54" width="113" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="이미지 불러오기"/>
+                                <connections>
+                                    <action selector="touchImageReloadButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wb8-5T-YpG"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bFZ-p7-DSs">
+                                <rect key="frame" x="87" y="220" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="YA0-Iv-CZa"/>
+                                    <constraint firstAttribute="height" constant="240" id="zpM-FO-U6j"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kff-ja-YNs">
+                                <rect key="frame" x="87" y="528" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="BDq-Oz-HRg"/>
+                                    <constraint firstAttribute="height" constant="240" id="S8Q-ez-lpR"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TrI-wK-See">
+                                <rect key="frame" x="179" y="803" width="56" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="clear"/>
+                                <connections>
+                                    <action selector="touchClearButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TPy-J9-DHZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6d-8y-xeQ">
+                                <rect key="frame" x="299" y="107" width="95" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="nextButton"/>
+                                <connections>
+                                    <segue destination="gge-0L-Qhn" kind="show" id="aGT-FH-xrD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="p6d-8y-xeQ" secondAttribute="trailing" constant="20" id="50i-kX-rcu"/>
+                            <constraint firstItem="FQh-71-Cg1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="6tz-RZ-fmd"/>
+                            <constraint firstItem="xgY-OF-EjO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="9QH-TW-Lhr"/>
+                            <constraint firstItem="bFZ-p7-DSs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="176" id="Mmk-iw-5qp"/>
+                            <constraint firstItem="TrI-wK-See" firstAttribute="top" secondItem="Kff-ja-YNs" secondAttribute="bottom" constant="35" id="Rg1-Fp-vhu"/>
+                            <constraint firstItem="p6d-8y-xeQ" firstAttribute="top" secondItem="FQh-71-Cg1" secondAttribute="bottom" constant="22" id="Sme-eg-ot5"/>
+                            <constraint firstItem="bFZ-p7-DSs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Wr7-jg-e4g"/>
+                            <constraint firstItem="xgY-OF-EjO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="dKa-T5-VQx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FQh-71-Cg1" secondAttribute="trailing" constant="10" id="lM8-pi-gG5"/>
+                            <constraint firstItem="Kff-ja-YNs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="pjO-Kf-lIl"/>
+                            <constraint firstItem="Kff-ja-YNs" firstAttribute="top" secondItem="bFZ-p7-DSs" secondAttribute="bottom" constant="68" id="rjm-BQ-NIG"/>
+                            <constraint firstItem="TrI-wK-See" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="zlk-sV-2B7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bengImageView" destination="Kff-ja-YNs" id="Nz3-ck-NGe"/>
+                        <outlet property="cheeImageView" destination="bFZ-p7-DSs" id="8wQ-Co-SOv"/>
+                        <outlet property="imageLoadLabel" destination="xgY-OF-EjO" id="gAT-ud-Ypj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="20" y="94"/>
+        </scene>
+        <!--Cache View Controller-->
+        <scene sceneID="a8G-UT-0hW">
+            <objects>
+                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="gge-0L-Qhn" customClass="CacheViewController" customModule="CacheRx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vsR-Ge-2cb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이미지 로딩 준비" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKm-Ro-tMA">
+                                <rect key="frame" x="10" y="54" width="112" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nIW-eq-85w">
+                                <rect key="frame" x="291" y="54" width="113" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="이미지 불러오기"/>
+                                <connections>
+                                    <action selector="touchImageReloadButton:" destination="gge-0L-Qhn" eventType="touchUpInside" id="IWt-vy-0hM"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pV9-Dl-9Zh">
+                                <rect key="frame" x="87" y="220" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="bbc-7s-ISO"/>
+                                    <constraint firstAttribute="width" constant="240" id="gAO-cC-8qD"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xST-8F-3fu">
+                                <rect key="frame" x="87" y="528" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="RYI-rV-uSA"/>
+                                    <constraint firstAttribute="width" constant="240" id="lS2-Sf-nH0"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7m-om-ZlL">
+                                <rect key="frame" x="179" y="803" width="56" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="clear"/>
+                                <connections>
+                                    <action selector="touchClearButton:" destination="gge-0L-Qhn" eventType="touchUpInside" id="luH-aZ-VIA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="h1F-nX-ezb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HKm-Ro-tMA" firstAttribute="top" secondItem="h1F-nX-ezb" secondAttribute="top" constant="10" id="C9A-tR-Qqc"/>
+                            <constraint firstItem="h1F-nX-ezb" firstAttribute="trailing" secondItem="nIW-eq-85w" secondAttribute="trailing" constant="10" id="IJb-qh-qVL"/>
+                            <constraint firstItem="nIW-eq-85w" firstAttribute="top" secondItem="h1F-nX-ezb" secondAttribute="top" constant="10" id="L8S-13-oME"/>
+                            <constraint firstItem="HKm-Ro-tMA" firstAttribute="leading" secondItem="h1F-nX-ezb" secondAttribute="leading" constant="10" id="MYr-kN-gHa"/>
+                            <constraint firstItem="xST-8F-3fu" firstAttribute="top" secondItem="pV9-Dl-9Zh" secondAttribute="bottom" constant="68" id="QDP-CK-jiF"/>
+                            <constraint firstItem="pV9-Dl-9Zh" firstAttribute="top" secondItem="h1F-nX-ezb" secondAttribute="top" constant="176" id="Uin-ON-zF5"/>
+                            <constraint firstItem="d7m-om-ZlL" firstAttribute="centerX" secondItem="h1F-nX-ezb" secondAttribute="centerX" id="Uyd-xB-bd5"/>
+                            <constraint firstItem="pV9-Dl-9Zh" firstAttribute="centerX" secondItem="h1F-nX-ezb" secondAttribute="centerX" id="mDP-9U-Mqv"/>
+                            <constraint firstItem="xST-8F-3fu" firstAttribute="centerX" secondItem="h1F-nX-ezb" secondAttribute="centerX" id="tKO-WT-Kit"/>
+                            <constraint firstItem="d7m-om-ZlL" firstAttribute="top" secondItem="xST-8F-3fu" secondAttribute="bottom" constant="35" id="uZb-zD-3QT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="edL-uc-jDp"/>
+                    <connections>
+                        <outlet property="bengImageView" destination="xST-8F-3fu" id="yhW-bJ-u29"/>
+                        <outlet property="cheeImageView" destination="pV9-Dl-9Zh" id="aau-fE-HOw"/>
+                        <outlet property="imageLoadLabel" destination="HKm-Ro-tMA" id="LGZ-HZ-L8S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mu3-OE-YZf" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="826" y="94"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
