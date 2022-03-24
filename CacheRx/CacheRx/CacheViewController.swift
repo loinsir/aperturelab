@@ -21,9 +21,15 @@ class CacheViewController: UIViewController {
     
     var disposeBag: DisposeBag = DisposeBag()
     
-    // 외부로 넘겨받는다
+    // 외부로부터 넘겨받는다
     var cheeImageUrl: URL?
     var bengImageUrl: URL?
+    
+    enum nilError: Error {
+        case optionalError
+        case decodeError
+        case loadError
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,56 +38,62 @@ class CacheViewController: UIViewController {
     
     func fetchData() { // 처음 이미지를 받아 캐싱
         imageLoadLabel.text = "이미지 로딩 중"
-        guard let cheeImageUrl = cheeImageUrl,
-              let bengImageUrl = bengImageUrl else { return }
-        
+        subscribeCheeImage()
+        subscribeBengImage()
+    }
+    
+    func subscribeBengImage() {
+        guard let bengImageUrl = bengImageUrl else {
+            return
+        }
+
         fetchImage(from: bengImageUrl).subscribe { event in
             switch event {
-            case .next(let image):
+            case .success(let image):
                 DispatchQueue.main.async {
                     self.bengImageView.image = image
+                    self.imageLoadLabel.text = "이미지 로딩 완료"
                 }
                 guard let image = image else { return }
                 self.imageCache.setObject(image, forKey: self.bengCacheKey)
-            case .completed:
-                DispatchQueue.main.async {
-                    self.imageLoadLabel.text = "이미지 로딩 완료"
-                }
-            case .error(let error):
+            case .failure(let error):
                 print(error.localizedDescription)
             }
+        }.disposed(by: disposeBag)
+    }
+    
+    func subscribeCheeImage() {
+        guard let cheeImageUrl = cheeImageUrl else {
+            return
         }
-        
+
         fetchImage(from: cheeImageUrl).subscribe { event in
             switch event {
-            case .next(let image):
+            case .success(let image):
                 DispatchQueue.main.async {
                     self.cheeImageView.image = image
+                    self.imageLoadLabel.text = "이미지 로딩 완료"
                 }
                 guard let image = image else { return }
                 self.imageCache.setObject(image, forKey: self.cheeCacheKey)
-            case .completed:
-                DispatchQueue.main.async {
-                    self.imageLoadLabel.text = "이미지 로딩 완료"
-                }
-            case .error(let error):
+            case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
     
-    func fetchImage(from url: URL) -> Observable<UIImage?> { // image URL로만 이미지를 불러오는 메서드
+    func fetchImage(from url: URL) -> Single<UIImage?> { // image URL로만 이미지를 불러오는 메서드
         imageLoadLabel.text = "이미지 로드 중"
-        return Observable.create { emitter in
+        
+        return Single.create { emitter in
             DispatchQueue.global().async {
                 do {
                     let data = try Data(contentsOf: url)
                     let image = UIImage(data: data)
-                    emitter.onNext(image)
+                    emitter(.success(image))
                 } catch {
-                    emitter.onError(error)
+                    emitter(.failure(error))
                 }
-                emitter.onCompleted()
             }
             return Disposables.create()
         }
@@ -96,39 +108,13 @@ class CacheViewController: UIViewController {
         if let cheeCachedImage = imageCache.object(forKey: cheeCacheKey) {
             cheeImageView.image = cheeCachedImage
         } else {
-            fetchImage(from: cheeImageUrl).subscribe { event in
-                switch event {
-                case .next(let image):
-                    DispatchQueue.main.async {
-                        self.cheeImageView.image = image
-                    }
-                case .completed:
-                    DispatchQueue.main.async {
-                        self.imageLoadLabel.text = "이미지 로딩 완료"
-                    }
-                case .error(let error):
-                    print(error.localizedDescription)
-                }
-            }.disposed(by: disposeBag)
+            subscribeCheeImage()
         }
         
         if let bengCachedImage = imageCache.object(forKey: bengCacheKey) {
             bengImageView.image = bengCachedImage
         } else {
-            fetchImage(from: bengImageUrl).subscribe { event in
-                switch event {
-                case .next(let image):
-                    DispatchQueue.main.async {
-                        self.bengImageView.image = image
-                    }
-                case .completed:
-                    DispatchQueue.main.async {
-                        self.imageLoadLabel.text = "이미지 로딩 완료"
-                    }
-                case .error(let error):
-                    print(error.localizedDescription)
-                }
-            }.disposed(by: disposeBag)
+            subscribeCheeImage()
         }
     }
     
